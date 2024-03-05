@@ -95,7 +95,7 @@ ______
 
 Qual será a saída do código acima?
 
-~~A)~~ "Olá, meu nome é João. Olá, meu nome é Maria." **[CORRETO]**
+~~A) "Olá, meu nome é João. Olá, meu nome é Maria."~~ **[CORRETO]**
 
 B) "Olá, meu nome é ."
 
@@ -119,6 +119,29 @@ Criando e manipulando Animais:
 - Para cada animal, chame o método descrever() para ver a descrição no console.
 
 Dica: Utilize `console.log()` para exibir as informações!
+
+**[RESPOSTA]:**
+
+```javascript
+class Animal {
+    constructor(nome, idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    descrever(){
+        console.log(`nome do animal: ${this.nome} // idade do animal: ${this.idade}`);
+    }   
+}
+
+const gato = new Animal("gato", 3);
+const cachorro = new Animal("cachorro", 5);
+
+cachorro.descrever();
+gato.descrever();
+
+
+````
 
 ______
 
@@ -145,7 +168,38 @@ Chamando os Métodos:
 
 Dica: Utilize console.log() para exibir as informações!
 
+**[RESPOSTA]:**
+```javascript
+class Animal {
+    constructor(nome, idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
 
+    descrever(){
+        console.log(`nome do animal: ${this.nome} // idade do animal: ${this.idade}`);
+    }   
+}
+class Gato extends Animal {
+    cor;
+    constructor(nome, idade, cor) {
+        super(nome, idade)
+        this.cor = cor;
+    }
+    miar() {
+        console.log("miau")
+    }
+}
+
+const gato = new Gato("gato", 3, "preto");
+const cachorro = new Animal("cachorro", 5);
+
+cachorro.descrever();
+gato.descrever();
+gato.miar();
+console.log(gato)
+
+````
 ______
 
 **9)** Vamos criar um programa em JavaScript para somar notas!
@@ -167,7 +221,27 @@ Chamando o Método para Ver o Total:
 
 Dica: Utilize console.log() para exibir as informações!
 
+**[RESPOSTA]:**
 
+```javascript
+class SomadorDeNota {
+    total = 0
+
+    adicionarNota(nota) {
+        this.total += nota
+    }
+
+    verTotal(){
+        console.log("O total de notas é ", this.total)
+    }
+}
+let somador = new SomadorDeNota()
+somador.adicionarNota(7)
+somador.adicionarNota(5)
+somador.adicionarNota(9)
+somador.verTotal()
+
+````
 ______
 
 **10)** Imagine que você está criando um programa em JavaScript para uma escola. Neste programa, existem diferentes tipos de funcionários, cada um com suas próprias características. Considere as seguintes classes:
@@ -188,3 +262,48 @@ Agora, sua tarefa é escrever um código em JavaScript que crie as classes Funci
 - Para cada objeto, chame o método calcularSalario() e mostre o salário calculado no console.
 
 Certifique-se de explicar cada parte do código utilizando comentários, explicando para que serve cada atributo e método, bem como a lógica por trás do cálculo de salário para o tipo de funcionário Professor.
+
+**[RESPOSTA]:**
+```javascript
+// Definição da classe Funcionario
+class Funcionario {
+    //O construtor da classe Funcionário recebe nome, idade e salário base como parâmetros
+   constructor(nome, idade, salarioBase) {
+    // Atributos da classe Funcionario
+    this.nome = nome;
+    this.idade = idade;
+    this.salarioBase = salarioBase;
+   }
+
+   //Método que calcula o salário total do funcionário
+   calcularSalario() {
+    return this.salarioBase; //Retorna o salário base do funcionário
+   }
+}
+
+// Definição da classe Professor que herda de Funcionário
+class Professor extends Funcionario {
+    // O construtor da classe Professor recebe os parâmetros da classe Funcionário
+    // e adiciona disciplina e horas de aula por semana
+    constructor(nome, idade, salarioBase, disciplina, horasAula){
+        super(nome, idade, salarioBase);
+        this.disciplina = disciplina;
+        this.horasAula = horasAula;
+    } 
+
+    //Método subescrito da classe Funcionario para calcular o salário do professor
+    calcularSalario(){
+        return this.salarioBase * this.horasAula;
+        // O salário do professor é calculado multiplicando o salário base pelas horas de aula por semana
+    }
+}
+
+//Criando dois objetos da classe Professor
+const professor1 = new Professor("Marcos", 40, 3000, "Biologia", 20);
+const professor2 = new Professor("Ana", 35, 3500, "Química", 18);
+
+//Calculando e mostrando o salário de cada professor no console
+console.log("Salário do professor 1: ", professor1.calcularSalario());
+console.log("Salário do professor 2: ", professor2.calcularSalario());
+
+````
